@@ -12,6 +12,10 @@ return [
 	"tax" => ['create', 'read', 'update', 'delete'],
 		"TypesOfExpenses" => ['create', 'read', 'update', 'delete'],
 	"expenses" => ['create', 'read', 'update', 'delete'],
+
+	
+	"receipt" => ['create', 'read', 'update', 'delete'],
+	"CatchReceipt" => ['create', 'read', 'update', 'delete'],
 	"invioce" => ['create', 'read', 'update', 'delete'],
 	
 	"adminShowCities" => ['create', 'read', 'update', 'delete'],

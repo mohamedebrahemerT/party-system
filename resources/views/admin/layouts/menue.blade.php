@@ -56,7 +56,60 @@
                     </li>
                      @endif
 
-                        @if(admin()->user()->role("suppliers_show"))
+                      
+
+                       @if(admin()->user()->role("TypesOfExpenses_show"))
+
+                <li class="nav-item {{  request()->routeIs('TypesOfExpenses.*') ? 'active' : '' }}">
+                   <a href="{{url('/')}}/TypesOfExpenses" class="nav-link ">
+                     <i class="icon-bar-chart"></i>
+                       <span class="title"> {{trans('trans.TypesOfExpenses')}}</span>
+                   </a>
+               </li>
+           @endif
+
+            @if(admin()->user()->role("expenses_show"))
+
+                <li class="nav-item {{  request()->routeIs('expenses.*') ? 'active' : '' }}">
+                   <a href="{{url('/')}}/expenses" class="nav-link ">
+                       <i class="icon-diamond"></i>
+                       <span class="title"> {{trans('trans.expenses')}}</span>
+                   </a>
+               </li>
+           @endif
+
+               @if(admin()->user()->role("receipt_show"))
+
+                     <li class="nav-item {{  request()->routeIs('receipt.*') ? 'active' : '' }}">
+                        <a href="{{url('/')}}/receipt" class="nav-link ">
+                            <i class="icon-diamond"></i>
+                            <span class="title"> {{trans('trans.receipt')}}</span>
+                        </a>
+                    </li>
+                @endif
+
+                  @if(admin()->user()->role("CatchReceipt_show"))
+
+                     <li class="nav-item {{  request()->routeIs('CatchReceipt.*') ? 'active' : '' }}">
+                        <a href="{{url('/')}}/CatchReceipt" class="nav-link ">
+                            <i class="fa fa-bitcoin"></i>
+                            <span class="title"> {{trans('trans.CatchReceipt')}}</span>
+                        </a>
+                    </li>
+                @endif
+                     
+
+           @if(admin()->user()->role("invioce_show"))
+
+                     <li class="nav-item {{  request()->routeIs('invioce.*') ? 'active' : '' }}">
+                        <a href="{{url('/')}}/invioce" class="nav-link ">
+                            <i class="icon-diamond"></i>
+                            <span class="title"> {{trans('trans.invioce')}}</span>
+                        </a>
+                    </li>
+                @endif
+
+                  @if(admin()->user()->role("suppliers_show"))
                      <li class="nav-item {{  request()->routeIs('suppliers.*') ? 'active' : '' }}">
                         <a href="{{url('/')}}/suppliers" class="nav-link ">
                             <i class="fa fa-users"></i>
@@ -91,36 +144,6 @@
                         </a>
                     </li>
                      @endif
-
-                       @if(admin()->user()->role("TypesOfExpenses_show"))
-
-                <li class="nav-item {{  request()->routeIs('TypesOfExpenses.*') ? 'active' : '' }}">
-                   <a href="{{url('/')}}/TypesOfExpenses" class="nav-link ">
-                     <i class="icon-bar-chart"></i>
-                       <span class="title"> {{trans('trans.TypesOfExpenses')}}</span>
-                   </a>
-               </li>
-           @endif
-
-            @if(admin()->user()->role("expenses_show"))
-
-                <li class="nav-item {{  request()->routeIs('expenses.*') ? 'active' : '' }}">
-                   <a href="{{url('/')}}/expenses" class="nav-link ">
-                       <i class="icon-diamond"></i>
-                       <span class="title"> {{trans('trans.expenses')}}</span>
-                   </a>
-               </li>
-           @endif
-
-           @if(admin()->user()->role("invioce_show"))
-
-                     <li class="nav-item {{  request()->routeIs('invioce.*') ? 'active' : '' }}">
-                        <a href="{{url('/')}}/invioce" class="nav-link ">
-                            <i class="icon-diamond"></i>
-                            <span class="title"> {{trans('trans.invioce')}}</span>
-                        </a>
-                    </li>
-                @endif
                      
   @if(admin()->user()->role("adminShowCities_show"))
                      <li class="nav-item {{  request()->routeIs('adminShowCities.*') ? 'active' : '' }}">

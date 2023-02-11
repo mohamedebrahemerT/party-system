@@ -104,11 +104,27 @@ Route::get('subsubCity/{id}/destroy', 'subsubCityController@destroy');
             Route::post('/delete', 'AdminNotificationsController@delete')->name('.delete');
             Route::post('/delete-multi', 'AdminNotificationsController@deleteMulti')->name('.deleteMulti');
 
+
+            
+
+//receipt
+Route::resource('/receipt','receiptController');
+Route::get('receipt/{id}/destroy', 'receiptController@destroy');
+Route::get('receiptprint/{id}', 'receiptController@receiptprint');
+Route::get('showreceipt/{id}', 'receiptController@showreceipt');
+
+ //CatchReceipt
+            Route::resource('/CatchReceipt','CatchReceiptController');
+Route::get('CatchReceipt/{id}/destroy', 'CatchReceiptController@destroy');
+Route::get('CatchReceiptprint/{id}', 'CatchReceiptController@CatchReceiptprint');
+Route::get('showCatchReceipt/{id}', 'CatchReceiptController@showCatchReceipt');
+
+
+
       //invioce
             Route::resource('/invioce','invioceController');
 Route::get('invioce/{id}/destroy', 'invioceController@destroy');
 Route::get('invioceprint/{id}', 'invioceController@invioceprint');
-Route::get('pdfview',array('as'=>'pdfview','uses'=>'invioceController@pdfview'));
 Route::get('showinvioce/{id}', 'invioceController@showinvioce');
 
       //Settings
