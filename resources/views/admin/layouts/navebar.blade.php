@@ -24,7 +24,7 @@
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" class="img-circle" src="{{url('/')}}/assets/layouts/layout/img/avatar3_small.jpg" />
+                                    <img alt="" class="img-circle" src="{{url('/')}}/{{setting()->logo}}" />
                                     <span class="username username-hide-on-mobile">
 
                                      @if(auth()->guard('admin')->user())
