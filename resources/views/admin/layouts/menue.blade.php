@@ -184,18 +184,7 @@
                      @endif
 
 
-
-                       @if(admin()->user()->role("AdminNotifications_show"))
-
-                     <li class="nav-item 
-{{ request()->is('AdminNotifications*') ? 'active' : '' }}
-                     ">
-                        <a href="{{url('/')}}/AdminNotifications" class="nav-link ">
-                       <i class="icon-graph"></i>
-                            <span class="title"> {{trans('trans.AdminNotifications')}}</span>
-                        </a>
-                    </li>
-                     @endif  
+ 
                       
 @if(admin()->user()->role("admins_show"))
 
