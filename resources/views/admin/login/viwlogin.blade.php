@@ -61,7 +61,9 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN LOGO -->
         <div class="logo">
             <a href="index.html">
-                <img src="{{url('/')}}/landing/images/logo.png" alt=""  style="height: 79px;" /> </a>
+                <img src="{{url('/')}}/{{setting()->logo}}" alt=""  style="height: 79px;" /> </a>
+
+                   
         </div>
         <!-- END LOGO -->
         <!-- BEGIN LOGIN -->
