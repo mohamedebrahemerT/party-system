@@ -26,7 +26,47 @@
            </script>
 
             
+  <script type="text/javascript">
+            var x=1;
+            $(document).on('click','.add_inpute',function(){
 
+                var max_inpute=10;
+                
+                if (x < max_inpute) 
+                {
+                    //$('.div_inpute').append('<h1>test</h1>');
+
+                    $('.div_inpute').append('<div>'+
+            '<div class="col-sm-6 col-sm-6 col-md-6 col-lg-6">'+
+               '{!! Form::label('input_key',trans('trans.input_key')) !!}'+
+            '{!! Form::text('input_key[]','',['class'=>'form-control']) !!}'+
+
+         '</div>'+
+
+         '<div class="col-sm-6 col-sm-6 col-md-6 col-lg-6">'+
+              ' {!! Form::label('input_value',trans('trans.input_value')) !!} '+
+          '{!! Form::text('input_value[]','',['class'=>'form-control']) !!}'+
+            
+         '</div>'+
+         '<div class="clearfix"> </div>'+
+                '<br>'+
+           '<a href="#" class="remove_inpute btn btn-danger"><i class="fa fa-trash"> </i>'+ '</a>'+
+           '<div class="clearfix"> </div>'+
+                '<br>'+
+         '</div>');
+                    x+=1;
+         
+                    return false;
+                }
+            });
+
+            $(document).on('click','.remove_inpute',function(){
+
+                $(this).parent('div').remove();
+                x-=1;
+                return false;
+            });
+         </script>
 
 @endpush
 
@@ -148,16 +188,45 @@
           
   <div class="form-group col-md-3">
                                <label class="control-label">{{trans('trans.Place_of_birth')}}</label>
-              <input type="text" placeholder="{{trans('trans.Place_of_birth')}}" class="form-control"    name="Place_of_birth" value="{{$Member->Place_of_birth}}"  /> 
+
+                <select name="Place_of_birth" class="form-control" >
+                   
+                      <option 
+
+ @if ($Member->Place_of_birth == "center")
+              selected
+              @endif
+                    value="center">
+                    {{trans('trans.center')}}              
+                    </option>
+
+                      <option 
+
+ @if ($Member->Place_of_birth == "City")
+              selected
+              @endif
+                    value="City">
+                    {{trans('trans.City')}}              
+                    </option>
+
+                     <option 
+
+ @if ($Member->Place_of_birth == "governorate")
+              selected
+              @endif
+                    value="governorate">
+                    {{trans('trans.governorate')}}              
+                    </option>
+
+                       
+
+                      
+                   
+                    
+                </select>
           </div>
           
-        
-             <div class="form-group col-md-3">
-                               <label class="control-label">{{trans('trans.marital_status')}}</label>
-              <input type="text" placeholder="{{trans('trans.marital_status')}}" class="form-control"    name="marital_status" value="{{$Member->marital_status}}"  /> 
-          </div>
-
-          <div class="form-group col-md-3">
+        <div class="form-group col-md-3">
                                <label class="control-label">{{trans('trans.residence')}}</label>
               <input type="text" placeholder="{{trans('trans.residence')}}" class="form-control"    name="residence" value="{{$Member->residence}}"  /> 
           </div>
@@ -166,6 +235,39 @@
                                <label class="control-label">{{trans('trans.director')}}</label>
               <input type="text" placeholder="{{trans('trans.director')}}" class="form-control"    name="director" value="{{$Member->director}}"  /> 
           </div>
+             <div class="form-group col-md-3">
+                               <label class="control-label">{{trans('trans.marital_status')}}</label>
+
+              <input type="text" placeholder="{{trans('trans.marital_status')}}" class="form-control"    name="marital_status" value="{{$Member->marital_status}}"  /> 
+  <a href="#" class="add_inpute btn btn-info"><i class="fa fa-plus"> </i> {{trans('trans.Add children')}}</a>
+                <div class="clearfix"> </div>
+          </div>
+
+             <div class="div_inpute col-sm-12 col-sm-12 col-md-12 col-lg-12">
+            @foreach($Member->other_data_R()->get() as $data)
+         <div>
+            <div class="col-sm-6 col-sm-6 col-md-6 col-lg-6">
+               {!! Form::label('input_key',trans('trans.input_key')) !!}
+            {!! Form::text('input_key[]',$data->input_key,['class'=>'form-control']) !!}
+
+         </div>
+
+         <div class="col-sm-6 col-sm-6 col-md-6 col-lg-6">
+               {!! Form::label('input_value',trans('trans.input_value')) !!}
+            {!! Form::text('input_value[]',$data->input_value,['class'=>'form-control']) !!}
+            
+         </div>
+         <div class="clearfix"> </div>
+                <br>
+           <a href="#" class="remove_inpute btn btn-danger"><i class="fa fa-trash"> </i> </a>
+           <div class="clearfix"> </div>
+                <br>
+         </div>
+            
+            @endforeach
+         </div>
+
+          
 
            <div class="form-group col-md-3">
                                <label class="control-label">{{trans('trans.Neighborhood_village_street')}}</label>
@@ -212,6 +314,22 @@
                                <label class="control-label">{{trans('trans.work_address')}}</label>
               <input type="text" placeholder="{{trans('trans.work_address')}}" class="form-control"    name="work_address" value="{{$Member->work_address}}"  /> 
           </div>
+
+           <div class="form-group col-md-3">
+                               <label class="control-label">{{trans('trans.GeneralSyndicate')}}</label>
+              <input type="text" placeholder="{{trans('trans.GeneralSyndicate')}}" class="form-control"    name="GeneralSyndicate" value="{{$Member->GeneralSyndicate}}"  /> 
+          </div>
+
+           <div class="form-group col-md-3">
+                               <label class="control-label">{{trans('trans.subguild')}}</label>
+              <input type="text" placeholder="{{trans('trans.subguild')}}" class="form-control"    name="subguild" value="{{$Member->subguild}}"  /> 
+          </div>
+
+          <div class="form-group col-md-3">
+                               <label class="control-label">{{trans('trans.club')}}</label>
+              <input type="text" placeholder="{{trans('trans.club')}}" class="form-control"    name="club" value="{{$Member->club}}"  /> 
+          </div>
+
 
           <div class="form-group col-md-3">
                                <label class="control-label">{{trans('trans.phone')}}</label>
@@ -297,7 +415,7 @@
                 <select name="Have_you_ever_run_for_a_council" class="form-control" >
                   <option 
 
- @if ($Member->Have_you_ever_joined_any_previous_political_party == "no")
+ @if ($Member->Have_you_ever_run_for_a_council == "no")
               selected
               @endif
                        value="no">
@@ -307,7 +425,7 @@
                    
                     <option 
 
- @if ($Member->Have_you_ever_joined_any_previous_political_party == "deputies")
+ @if ($Member->Have_you_ever_run_for_a_council == "deputies")
               selected
               @endif
                     value="deputies">
@@ -316,7 +434,7 @@
 
                      <option 
 
- @if ($Member->Have_you_ever_joined_any_previous_political_party == "local")
+ @if ($Member->Have_you_ever_run_for_a_council == "local")
               selected
               @endif
                        value="local">

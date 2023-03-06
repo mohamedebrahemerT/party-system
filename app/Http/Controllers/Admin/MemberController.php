@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\admin;
+use App\Models\otherData;
  
  use Auth;
 use Hash;
@@ -115,6 +116,9 @@ class MemberController extends Controller
                 'The_Secretariat_in_which_you_wish_to_work'      => 'sometimes|nullable',
                  'email' => 'required|email|unique:admins',
                 'password'      => 'sometimes|nullable',
+                'GeneralSyndicate'      => 'sometimes|nullable',
+                'subguild'      => 'sometimes|nullable',
+                'club'      => 'sometimes|nullable',
                 'photo'      =>'sometimes|nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
      
                  
@@ -154,6 +158,9 @@ class MemberController extends Controller
                 'The_Secretariat_in_which_you_wish_to_work'      => trans('trans.The_Secretariat_in_which_you_wish_to_work'),
                 'email'      => trans('trans.email'),
                 'password'      => trans('trans.password'),
+                'GeneralSyndicate'      => trans('trans.GeneralSyndicate'),
+                'subguild'      => trans('trans.subguild'),
+                'club'      => trans('trans.club'),
                 'photo'      => trans('trans.photo'),
 
 
@@ -170,7 +177,33 @@ class MemberController extends Controller
                         $data['password']=Hash::make($request->password);
                         $data['type']='Member';
 
+ 
         $Member=admin::create($data);
+
+
+           if (request()->has('input_key') && request()->has('input_value')) 
+               {
+
+            $i=0;
+
+             $c=otherData::where('member_id', $Member->id);
+             $c->delete();
+
+        foreach (request('input_key') as $input_key )
+                 {  
+                      $input_value=request('input_value')[$i];
+          otherData::create([
+                'member_id'  => $Member->id,
+                'input_key'   =>$input_key,
+                'input_value' =>$input_value,
+
+                     ]);
+                   
+                }
+
+ 
+               }
+
         session()->flash('success', trans('trans.createSuccess'));
 
         
@@ -259,6 +292,9 @@ class MemberController extends Controller
                 'The_Secretariat_in_which_you_wish_to_work'      => 'sometimes|nullable',
               
                 'password'      => 'sometimes|nullable',
+                 'GeneralSyndicate'      => 'sometimes|nullable',
+                'subguild'      => 'sometimes|nullable',
+                'club'      => 'sometimes|nullable',
                 'photo'      =>'sometimes|nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
      
                  
@@ -299,6 +335,9 @@ class MemberController extends Controller
                 'email'      => trans('trans.email'),
                 'password'      => trans('trans.password'),
                 'photo'      => trans('trans.photo'),
+                 'GeneralSyndicate'      => trans('trans.GeneralSyndicate'),
+                'subguild'      => trans('trans.subguild'),
+                'club'      => trans('trans.club'),
 
 
 
@@ -313,7 +352,32 @@ class MemberController extends Controller
            }      
                        $data['password']=Hash::make($request->password);
       $data['type']='Member';
+
+      if (request()->has('input_key') && request()->has('input_value')) 
+               {
+
+            $i=0;
+
+             $c=otherData::where('member_id',  $id);
+             $c->delete();
+
+        foreach (request('input_key') as $input_key )
+                 {  
+                      $input_value=request('input_value')[$i];
+          otherData::create([
+                'member_id'  =>  $id,
+                'input_key'   =>$input_key,
+                'input_value' =>$input_value,
+
+                     ]);
+                   
+                }
+
+ 
+               }
            admin::where('id',$request->id)->update($data);
+
+
 
   
                     
@@ -343,4 +407,23 @@ class MemberController extends Controller
               session()->flash('danger', trans('trans.deleteSuccess'));
         return   redirect('/Member');
     }
+
+     public function print($id)
+    {
+           $Member=admin::where('id',$id)->first();
+
+     return view('admin.Member.print',compact('Member'));
+
+    }
+
+      public function printcard($id)
+    {
+           $Member=admin::where('id',$id)->first();
+
+     return view('admin.Member.printcard',compact('Member'));
+
+    }
+
+    
+
 }

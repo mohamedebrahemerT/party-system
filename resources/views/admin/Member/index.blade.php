@@ -130,6 +130,22 @@
                                                     {{trans('trans.show')}}
                                                                 </a>
                                                                 </li>
+
+                                                                <li>
+                     <a href="{{url('/')}}/Member/{{$Dep->id}}/print">
+                                                                        <i class="icon-docs"></i> 
+                                                    {{trans('trans.print')}}
+                                                                </a>
+                                                                </li>
+
+                                                                 <li>
+                     <a href="{{url('/')}}/Member/{{$Dep->id}}/printcard">
+                                                                        <i class="icon-docs"></i> 
+                                                    {{trans('trans.printcard')}}
+                                                                </a>
+                                                                </li>
+
+
                                                                 <li>
                                               <a href="{{url('/')}}/Member/{{$Dep->id}}/destroy">
                                                                         <i class="icon-tag"></i>

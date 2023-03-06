@@ -51,6 +51,10 @@ Route::resource('AdminGroup', 'AdminGroupController');
     Route::resource('Member', 'MemberController');
     Route::get('Member/{id}/destroy', 'MemberController@destroy');
 
+    Route::get('Member/{id}/print', 'MemberController@print');
+    Route::get('Member/{id}/printcard', 'MemberController@printcard');
+
+
       //suppliers
 Route::resource('suppliers', 'suppliersController');
 Route::get('suppliers/{id}/destroy', 'suppliersController@destroy');

@@ -16,8 +16,10 @@ class CreateAdminGroupsTable extends Migration
         Schema::create('admin_groups', function (Blueprint $table) {
             $table->id();
             $table->string('group_name');
+
              $table->bigInteger('admin_id')->unsigned()->nullable();
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }

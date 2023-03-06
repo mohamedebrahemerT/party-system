@@ -56,7 +56,10 @@ house_number',
 'The_Secretariat_in_which_you_wish_to_work',
 'email',
 'password',
-'photo'
+'photo',
+'GeneralSyndicate',
+'subguild',
+'club',
 
     ];
      protected $hidden = [
@@ -93,5 +96,11 @@ house_number',
                 return false;
             }
     }
+
+
+     public function other_data_R() {
+        return $this->hasMany('App\Models\otherData', 'member_id', 'id');
+    }
+
 
 }
